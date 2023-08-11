@@ -50,18 +50,18 @@ class Deck:
         return self.cards.pop()
 
 class Game:
-    def __init__(self, num_players=2, num_lives=2, shuriken=1):
+    def __init__(self, num_players=2, shuriken=1):
         self.num_players = num_players
         self.players = [Player(f"Zaidejas {i + 1}") for i in range(num_players)]
         self.deck = Deck()
         self.round_num = 1
-        self.num_lives = 5 #num_players
+        self.num_lives = num_players
         self.current_cards = []
         self.shuriken = shuriken
 
     def play(self):
         while any(self.players) & (self.num_lives > 0):  # Continue until all players have no cards left
-            print(f"\n--- Roundas {self.round_num} ---")
+            print(f"\n--- {self.round_num} Levelis ---")
             self.current_cards.clear()
             all_dealt_cards = []
             # Deal cards for each player
@@ -70,11 +70,15 @@ class Game:
             for player in self.players:
                 player.draw_cards(self.deck, num_cards_to_deal)
                 all_dealt_cards.extend(player.hand)
+
             # Play the round
             if self.round_num % 2 == 0:
                 self.shuriken = self.shuriken + 1
+                print('Perejote lygi, gavote shurikena')
+
             elif self.round_num % 3 == 0:
                 self.num_lives = self.num_lives + 1
+                print('Perejote lygi, gavote gyvybe')
 
             print(f"Turimos gyvybes: {self.num_lives} \n Turimi shurikenai: {self.shuriken}")
             while any(player.hand for player in self.players):
