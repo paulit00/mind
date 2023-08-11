@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
 import { socket } from "./socket";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { Switch } from "react-router";
 import Home from "./views/Home";
 import About from "./views/About";
 
@@ -62,70 +61,70 @@ function App() {
   //  const query = messagesRef.orderBy("createdAt").limit(25);
 
   // const [messages] = useCollectionData(query, { idField: "id" });
-  const mockPlayers = [
-    {
-      id: "playerID1",
-      name: "Player 1",
-      hand: [2, 5, 9],
-      level: 1,
-    },
-    {
-      id: "playerID2",
-      name: "Player 2",
-      hand: [3, 7, 10],
-      level: 1,
-    },
-    // Add more players as needed
-  ];
+  // const mockPlayers = [
+  //   {
+  //     id: "playerID1",
+  //     name: "Player 1",
+  //     hand: [2, 5, 9],
+  //     level: 1,
+  //   },
+  //   {
+  //     id: "playerID2",
+  //     name: "Player 2",
+  //     hand: [3, 7, 10],
+  //     level: 1,
+  //   },
+  //   // Add more players as needed
+  // ];
 
-  const PlayerData = ({ playerNumber, children }) => (
-    <div className={`bg-gray-${300 + playerNumber * 100}`}>{children}</div>
-  );
+  // const PlayerData = ({ playerNumber, children }) => (
+  //   <div className={`bg-gray-${300 + playerNumber * 100}`}>{children}</div>
+  // );
 
-  const GameWindow = ({ numberOfPlayers }) => {
-    const playerComponents = [];
+  // const GameWindow = ({ numberOfPlayers }) => {
+  //   const playerComponents = [];
 
-    for (
-      let playerNumber = 1;
-      playerNumber <= numberOfPlayers;
-      playerNumber++
-    ) {
-      playerComponents.push(
-        <PlayerData key={playerNumber} playerNumber={playerNumber}>
-          Player {playerNumber} Data
-        </PlayerData>
-      );
-    }
+  //   for (
+  //     let playerNumber = 1;
+  //     playerNumber <= numberOfPlayers;
+  //     playerNumber++
+  //   ) {
+  //     // playerComponents.push(
+  //     // <PlayerData key={playerNumber} playerNumber={playerNumber}>
+  //     //   Player {playerNumber} Data
+  //     // </PlayerData>
+  //     // );
+  //   }
 
-    return (
-      <div className="grid h-screen w-full place-items-center">
-        <div className="w-2/3 h-2/3 bg-gray-200 p-6 rounded-lg shadow-md">
-          <div className="grid grid-cols-3 grid-rows-3 h-full">
-            {playerComponents}
-          </div>
-        </div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div className="grid h-screen w-full place-items-center">
+  //       <div className="w-2/3 h-2/3 bg-gray-200 p-6 rounded-lg shadow-md">
+  //         <div className="grid grid-cols-3 grid-rows-3 h-full">
+  //           {playerComponents}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
-  const mockCurrentLevel = {
-    levelNumber: 1,
-    target: 3,
-    cardsPlayed: 2,
-  };
+  // const mockCurrentLevel = {
+  //   levelNumber: 1,
+  //   target: 3,
+  //   cardsPlayed: 2,
+  // };
 
-  const mockGameData = {
-    players: mockPlayers,
-    currentLevel: mockCurrentLevel,
-  };
-  const { players, currentLevel } = mockGameData;
-  useEffect(() => {
-    fetch("/time")
-      .then((res) => res.json())
-      .then((data) => {
-        setCurrentTime(data.time);
-      });
-  }, []);
+  // const mockGameData = {
+  //   players: mockPlayers,
+  //   currentLevel: mockCurrentLevel,
+  // };
+  // const { players, currentLevel } = mockGameData;
+  // useEffect(() => {
+  //   fetch("/time")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCurrentTime(data.time);
+  //     });
+  // }, []);
 
   return (
     <div className="App">
