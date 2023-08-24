@@ -1,22 +1,24 @@
 class Player {
   id: string = "";
   name: string = "";
-  hand: number[];
+  hand: Card[] = [];
 }
 class Card {
   value: number = 0;
 }
 
 class Game {
-  id: string = "";
+  room: string = "";
   num_players: number = 2;
-  players: Player[];
-  deck: Card[];
-  round_num: number = 1;
-  num_lives: number = 1;
-  current_cards: Card[];
+  players: Player[] = [];
+  deck: Card[] = [];
+  round_num: number = 0;
+  num_lives: number = 0;
+  current_cards: Card[] = [];
   shuriken: number = 0;
+  all_dealt_cards: number[] = [];
+  game_started: boolean = false;
 }
 
-export type { Card, Game };
-export { Player };
+export type { Card };
+export { Player, Game };

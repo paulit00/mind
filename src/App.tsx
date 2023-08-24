@@ -5,41 +5,8 @@ import { socket } from "./socket";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./views/Home";
 import About from "./views/About";
-
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/firestore";
-// import "firebase/compat/auth";
-
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { useCollectionData } from "react-firebase-hooks/firestore";
-
-// firebase.initializeApp({
-//   apiKey: "AIzaSyAqrr3ISNOh7qgleQ6mjaLTMAc1TigOFuA",
-//   authDomain: "the-minde.firebaseapp.com",
-//   projectId: "the-minde",
-//   storageBucket: "the-minde.appspot.com",
-//   messagingSenderId: "93579601357",
-//   appId: "1:93579601357:web:c5a4b5dd8425a9603fd084",
-//   measurementId: "G-4JTL7SL2E2",
-// });
-
-// const auth = firebase.auth();
-// const firestore = firebase.firestore();
-
-// function SignIn() {
-//   const signInWithGoogle = () => {
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     auth.signInWithPopup(provider);
-//   };
-
-//   return <button onClick={signInWithGoogle}>Sign in with Google</button>;
-// }
-
-// function SignOut() {
-//   return (
-//     auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>
-//   );
-// }
+import DUK from "./views/DUK";
+import Kortos_test from "./views/Kortos_test";
 
 socket.on("connect", () => {
   console.log("connected");
@@ -56,165 +23,98 @@ socket.on("message", (data) => {
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const numberOfPlayers = 3;
-  // const [user] = useAuthState(auth);
-  //// const messagesRef = firestore.collection("messages");
-  //  const query = messagesRef.orderBy("createdAt").limit(25);
-
-  // const [messages] = useCollectionData(query, { idField: "id" });
-  // const mockPlayers = [
-  //   {
-  //     id: "playerID1",
-  //     name: "Player 1",
-  //     hand: [2, 5, 9],
-  //     level: 1,
-  //   },
-  //   {
-  //     id: "playerID2",
-  //     name: "Player 2",
-  //     hand: [3, 7, 10],
-  //     level: 1,
-  //   },
-  //   // Add more players as needed
-  // ];
-
-  // const PlayerData = ({ playerNumber, children }) => (
-  //   <div className={`bg-gray-${300 + playerNumber * 100}`}>{children}</div>
-  // );
-
-  // const GameWindow = ({ numberOfPlayers }) => {
-  //   const playerComponents = [];
-
-  //   for (
-  //     let playerNumber = 1;
-  //     playerNumber <= numberOfPlayers;
-  //     playerNumber++
-  //   ) {
-  //     // playerComponents.push(
-  //     // <PlayerData key={playerNumber} playerNumber={playerNumber}>
-  //     //   Player {playerNumber} Data
-  //     // </PlayerData>
-  //     // );
-  //   }
-
-  //   return (
-  //     <div className="grid h-screen w-full place-items-center">
-  //       <div className="w-2/3 h-2/3 bg-gray-200 p-6 rounded-lg shadow-md">
-  //         <div className="grid grid-cols-3 grid-rows-3 h-full">
-  //           {playerComponents}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
-  // const mockCurrentLevel = {
-  //   levelNumber: 1,
-  //   target: 3,
-  //   cardsPlayed: 2,
-  // };
-
-  // const mockGameData = {
-  //   players: mockPlayers,
-  //   currentLevel: mockCurrentLevel,
-  // };
-  // const { players, currentLevel } = mockGameData;
-  // useEffect(() => {
-  //   fetch("/time")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setCurrentTime(data.time);
-  //     });
-  // }, []);
 
   return (
     <div className="App">
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
+      <>
+        <Router>
+          <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                The Mind
+              </span>
+              <div className="flex md:order-2">
+                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                  Smegenai
+                </span>
+                <button
+                  data-collapse-toggle="navbar-sticky"
+                  type="button"
+                  className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                  aria-controls="navbar-sticky"
+                  aria-expanded="false"
+                >
+                  <span className="sr-only">Open main menu</span>
+                  <svg
+                    className="w-5 h-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 17 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 1h15M1 7h15M1 13h15"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                id="navbar-sticky"
+              >
+                <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                  <li>
+                    <Link
+                      to="/"
+                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/about"
+                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Žaidimas
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/DUK"
+                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      DUK
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="Kortos_test"
+                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Kortos_test
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </nav>
-
-          <Routes>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/" element={<Home />}></Route>
-          </Routes>
-        </div>
-      </Router>
+          <div>
+            <Routes>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/DUK" element={<DUK />}></Route>
+              <Route path="/Kortos_test" element={<Kortos_test />}></Route>
+            </Routes>
+          </div>
+        </Router>
+      </>
     </div>
   );
-
-  // function ChatRoom() {
-  //   const dummy = useRef();
-  //   const messagesRef = firestore.collection("messages");
-  //   const query = messagesRef.orderBy("createdAt").limit(25);
-
-  //   const [messages] = useCollectionData(query, { idField: "id" });
-
-  //   const [formValue, setFormValue] = useState("");
-
-  //   const sendMessage = async (e) => {
-  //     e.preventDefault();
-
-  //     const { uid } = auth.currentUser;
-
-  //     await messagesRef.add({
-  //       text: formValue,
-  //       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-  //       uid,
-  //     });
-
-  //     setFormValue("");
-  //     //  dummy.current.scrollIntoView({ behavior: "smooth" });
-  //   };
-
-  //   return (
-  //     <>
-  //       <main>
-  //         {messages &&
-  //           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-
-  //         <span ref={dummy}></span>
-  //       </main>
-
-  //       <form onSubmit={sendMessage}>
-  //         <input
-  //           value={formValue}
-  //           onChange={(e) => setFormValue(e.target.value)}
-  //           placeholder="say something nice"
-  //         />
-
-  //         <button type="submit" disabled={!formValue}>
-  //           🕊️
-  //         </button>
-  //       </form>
-  //     </>
-  //   );
-  // }
-
-  // function ChatMessage(props) {
-  //   const { text, uid } = props.message;
-
-  //   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
-
-  //   return (
-  //     <div className={`message ${messageClass}`}>
-  //       <p>{text}</p>
-  //     </div>
-  //   );
-  // }
-
-  // return (
-  //   <div className="App">
-  //     <GameWindow numberOfPlayers={numberOfPlayers} />
-  //   </div>
-  // );
 }
 
 export default App;
